@@ -1,11 +1,9 @@
 package com.bueno.imdbgame.dto;
 
-import com.bueno.imdbgame.model.entities.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Calendar;
-import java.util.List;
 
 @JsonPropertyOrder({"id", "match_date", "game_ended", "score", "user_match", "score"})
 public record GameVO(

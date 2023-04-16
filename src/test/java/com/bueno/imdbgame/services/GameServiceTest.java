@@ -1,14 +1,12 @@
 package com.bueno.imdbgame.services;
 
 import com.bueno.imdbgame.dto.GameVO;
-import com.bueno.imdbgame.dto.MovieVO;
 import com.bueno.imdbgame.dto.TurnVO;
 import com.bueno.imdbgame.dto.UserVO;
 import com.bueno.imdbgame.dto.mappers.GameMapper;
 import com.bueno.imdbgame.dto.mappers.MovieMapper;
 import com.bueno.imdbgame.exceptions.GameException;
 import com.bueno.imdbgame.model.entities.Game;
-import com.bueno.imdbgame.model.entities.Match;
 import com.bueno.imdbgame.model.entities.Movie;
 import com.bueno.imdbgame.model.entities.User;
 import com.bueno.imdbgame.model.enums.Position;
@@ -25,12 +23,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,7 +89,6 @@ class GameServiceTest {
     @Test
     void startGame() {
         UserVO userVO = MockUser.mockVO();
-        Game game = MockGame.mockEntity();
         User user = MockUser.mockEntity();
         Game gameSaved = MockGame.mockEntity();
         gameSaved.setUserMatch(user);
@@ -145,9 +139,7 @@ class GameServiceTest {
         Mockito.lenient().when(gameRepository.save(Mockito.any(Game.class)))
                 .thenReturn(game);
 
-        Exception exception = assertThrows(GameException.class, () -> {
-            gameService.endGame(gameVO);
-        });
+        Exception exception = assertThrows(GameException.class, () -> gameService.endGame(gameVO));
     }
 
     @Test

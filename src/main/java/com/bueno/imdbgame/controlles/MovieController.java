@@ -34,9 +34,10 @@ public class MovieController {
         Page<MovieVO> movies = movieService.findALlPageable(Pageable);
         return ResponseEntity.ok(movies);
     }
-    @GetMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     //@Operation(security = {@SecurityRequirement(name = "bearer-key")})
-    public ResponseEntity<MovieVO> findById(@PathVariable(value = "id")Long id) {
+    public ResponseEntity<MovieVO> findById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok(movieService.findById(id));
     }
 
